@@ -70,6 +70,10 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
+    //coil image loader
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -4,7 +4,7 @@ import com.aya.domain.entity.MealsResponse
 
 interface MealsRepo {
 
-    fun getMealsFromRemote():MealsResponse
+    suspend fun getMealsFromRemote():MealsResponse
 
 
 }
