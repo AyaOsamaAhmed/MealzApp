@@ -73,6 +73,12 @@ dependencies {
     //coil image loader
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    //Ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.gson)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
