@@ -6,5 +6,7 @@ interface MealsRepo {
 
     suspend fun getMealsFromRemote():MealsResponse
 
+    suspend fun getMealsFromKtor(): Result<MealsResponse>
+
 
 }

@@ -7,14 +7,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.ktor.client.HttpClient
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepoModule {
 
     @Provides
-    fun provideRepo(apiService: ApiService): MealsRepo {
-        return MealsRepoImpl(apiService)
+    fun provideRepo(apiService: ApiService , ktor: HttpClient): MealsRepo {
+        return MealsRepoImpl(apiService, ktor)
 
     }
 }

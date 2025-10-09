@@ -1,6 +1,7 @@
 package com.aya.mealzapp.di
 
 import com.aya.data.remote.ApiService
+import com.aya.mealzapp.Constant.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.gson.gson
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -33,7 +35,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -42,16 +44,21 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpClient (): HttpClient {
-        return HttpClient(CIO) {
+        return HttpClient(CIO) {  //okHttp  for android only ** CIO for KMP
+            engine {
+                requestTimeout = 10_000
+            }
+
+            // set default request parameters
+            defaultRequest {
+                // add base url for all request
+                url(BASE_URL)
+            }
+
             install(ContentNegotiation) {
                 gson()
             }
     }}
-
-
-    fun providerKtor(httpClient: HttpClient) {
-
-    }
 
     @Provides
     @Singleton
